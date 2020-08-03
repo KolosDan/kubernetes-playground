@@ -1,5 +1,7 @@
 # Configuring rook-ceph
 
+!!! ПОСЛЕ КАЖДОГО ШАГА НЕОБХОДИМО ПРОВЕРЯТЬ ГОТОВНОСТЬ РЕСУРСОВ ПРИ ПОМОЩИ `kubectl get po -n rook-ceph`
+
 `cd rook/cluster/examples/kubernetes/ceph`
 
 `kubectl create -f common.yaml`
