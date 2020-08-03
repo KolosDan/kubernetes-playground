@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: keyless-ingress
+  namespace: keyless-prod
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  tls:
+    - hosts:
+        - dashboard.l2.app
+        - instant.l2.app
+      secretName: controller-tls
+  rules:
+  - host: dashboard.l2.app
+    http:
+      paths:
+      - backend:
+          serviceName: dashboard
+          servicePort: 443
+  - host: instant.l2.app
+    http:
+      paths:
+      - backend:
+          serviceName: instant
+          servicePort: 443

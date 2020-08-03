@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo22
+spec:
+  selector:
+    matchLabels:
+      app: echo22
+  template:
+    metadata:
+      labels:
+        app: echo22
+    spec:
+      containers:
+      - name: echo1
+        image: k8s.gcr.io/echoserver:1.10
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        env:
+          - name: TEST_ENV
+            valueFrom:
+                configMapKeyRef:
+                  name: testenv
+                  key: EXAMPLE_VALUE
+        ports:
+        - containerPort: 8080
+      nodeName: l2-cluster-master

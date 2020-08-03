@@ -1,0 +1,1 @@
+kubectl create cm prometheus-conf --from-file=prometheus.yml -n telemetry

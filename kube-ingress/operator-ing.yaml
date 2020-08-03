@@ -1,0 +1,63 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: operator-ingress
+  namespace: operator-dev
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  tls:
+    - hosts:
+        - btc-blockbook.operator-dev.l2.team
+        - bch-blockbook.operator-dev.l2.team
+        - bsv-blockbook.operator-dev.l2.team
+        - ltc-blockbook.operator-dev.l2.team
+        - omni-blockbook.operator-dev.l2.team
+        - zcash-blockbook.operator-dev.l2.team
+        - qtum-blockbook.operator-dev.l2.team
+      secretName: controller-tls
+  rules:
+  - host: btc-blockbook.operator-dev.l2.team
+    http:
+      paths:
+      - backend:
+          serviceName: btc-blockbook
+          servicePort: 19130
+  - host: bch-blockbook.operator-dev.l2.team
+    http:
+      paths:
+      - backend:
+          serviceName: bch-blockbook
+          servicePort: 19130
+  - host: bsv-blockbook.operator-dev.l2.team
+    http:
+      paths:
+      - backend:
+          serviceName: bsv-blockbook
+          servicePort: 19130
+  - host: ltc-blockbook.operator-dev.l2.team
+    http:
+      paths:
+      - backend:
+          serviceName: ltc-blockbook
+          servicePort: 19130
+  - host: omni-blockbook.operator-dev.l2.team
+    http:
+      paths:
+      - backend:
+          serviceName: omni-blockbook
+          servicePort: 19130
+  - host: qtum-blockbook.operator-dev.l2.team
+    http:
+      paths:
+      - backend:
+          serviceName: qtum-blockbook
+          servicePort: 19130
+  - host: zcash-blockbook.operator-dev.l2.team
+    http:
+      paths:
+      - backend:
+          serviceName: zcash-blockbook
+          servicePort: 19130
