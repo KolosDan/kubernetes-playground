@@ -1,0 +1,35 @@
+cluster_name: rancher-test
+ssh_key_path: /Users/kls/.ssh/id_rsa
+addon_job_timeout: 300
+nodes:
+  - address: 13.79.148.124
+    user: kls
+    role:
+      - controlplane
+      - etcd
+  - address: 40.127.106.100
+    user: kls
+    role:
+      - worker
+    labels:
+      app: ingress
+  - address: 40.127.180.108
+    user: kls
+    role:
+      - worker
+private_registries:
+  - url: registry.l2.team
+    user: l2registry
+    password: qsZo4b7yburHtAk3DHM7
+authentication:
+  strategy: x509
+  sans:
+    - "13.79.148.124"
+    - "10.10.10.1"
+    - "10.0.1.4"
+network:
+  plugin: weave
+ingress:
+  provider: nginx
+  node_selector:
+    app: ingress

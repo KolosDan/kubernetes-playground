@@ -1,9 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: test-pv-claim
-  labels:
-    app: test-pv
+  name: btc-node
 spec:
   storageClassName: rook-ceph-block
   accessModes:
