@@ -17,6 +17,10 @@ nodes:
     user: kls
     role:
       - worker
+  - address: 168.63.79.198
+    user: kls
+    role:
+      - worker
 private_registries:
   - url: registry.l2.team
     user: l2registry
