@@ -4,9 +4,9 @@ metadata:
   name: prometheus-data
   namespace: telemetry
 spec:
-  storageClassName: rook-ceph-block
+  storageClassName: rook-cephfs
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
       storage: 20Gi
